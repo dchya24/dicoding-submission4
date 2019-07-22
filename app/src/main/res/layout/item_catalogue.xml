@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imgPoster"
+            android:layout_width="90dp"
+            android:layout_margin="@dimen/dp_m"
+            android:layout_height="130dp"
+            android:elevation="@dimen/dp_l"
+            android:contentDescription="@string/poster_desc"/>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/imgPoster"
+            android:layout_marginTop="@dimen/dp_xl"
+            android:paddingLeft="@dimen/dp_m"
+            android:paddingRight="@dimen/dp_m"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:text="@string/dumy_title"/>
+
+        <TextView
+            android:id="@+id/tv_release"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/imgPoster"
+            android:layout_below="@id/tv_title"
+            android:paddingTop="@dimen/dp_m"
+            android:paddingLeft="@dimen/dp_m"
+            android:paddingRight="@dimen/dp_m"
+            android:textStyle="italic"
+            android:textSize="12sp"
+            android:text="@string/dumy_release"/>
+
+        <TextView
+            android:id="@+id/tv_overview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/imgPoster"
+            android:layout_below="@id/tv_release"
+            android:paddingTop="@dimen/dp_m"
+            android:paddingLeft="@dimen/dp_m"
+            android:paddingRight="@dimen/dp_m"
+            android:textSize="14sp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:text="@string/dumy_overview"/>
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
