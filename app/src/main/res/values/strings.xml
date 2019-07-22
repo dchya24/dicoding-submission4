@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Submission4</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="navigation_movie">Movie</string>
+    <string name="navigation_tv_show">Tv Show</string>
+    <string name="navigation_movie_favorit">Movie Favorit</string>
+    <string name="navigation_tv_show_favorit">Tv Show Favorit</string>
 </resources>
