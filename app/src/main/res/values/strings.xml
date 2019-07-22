@@ -1,7 +1,26 @@
 <resources>
-    <string name="app_name">Submission4</string>
+    <string name="app_name" translatable="false">Submission4</string>
+    <string name="app_title">Entertaiment</string>
     <string name="navigation_movie">Movie</string>
     <string name="navigation_tv_show">Tv Show</string>
-    <string name="navigation_movie_favorit">Movie Favorit</string>
-    <string name="navigation_tv_show_favorit">Tv Show Favorit</string>
+    <string name="navigation_movie_favorit">Movie Favorite</string>
+    <string name="navigation_tv_show_favorit">Tv Show Favorite</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="dumy_title" translatable="false">Avengers: King Of Monster</string>
+    <string name="dumy_release" translatable="false">Mei 30, 2019</string>
+    <string name="dumy_runtime" translatable="false">130 Minutes</string>
+    <string name="dumy_score" translatable="false">95%</string>
+    <string name="dumy_overview" translatable="false">As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain.</string>
+    <string name="dumy_director" translatable="false">(Joe and Anthony) Russo Brother\'s</string>
+
+    <string name="poster_desc"> Movie Poster </string>
+    <string name="big_poster">Big Poster</string>
+    <string name="director">Director</string>
+    <string name="overview">Overview</string>
+    <string name="user_score">User Score</string>
+    <string name="change_localization">Change Localization</string>
+    <string name="creator">Creator</string>
+
 </resources>

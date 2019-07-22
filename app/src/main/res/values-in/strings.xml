@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_title">Hiburan</string>
+    <string name="navigation_movie">Film</string>
+    <string name="navigation_tv_show">Acata tv</string>
+    <string name="navigation_movie_favorit">Film Favorit</string>
+    <string name="navigation_tv_show_favorit">Acara Tv Favorit</string>
+
+    <string name="poster_desc"> Poster Film </string>
+    <string name="big_poster">Poster Besar</string>
+    <string name="director">Direktur</string>
+    <string name="overview">Gambaran Ikhtisar</string>
+    <string name="user_score">Skor Penonton</string>
+    <string name="creator">Pembuat</string>
+    <string name="change_localization">Change Localization</string>
+
+</resources>
