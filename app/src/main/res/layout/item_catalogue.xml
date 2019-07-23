@@ -2,8 +2,9 @@
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:id="@+id/cv_item"
     android:layout_marginBottom="@dimen/dp_sm"
-    android:layout_marginTop="@dimen/dp_m"
+    android:layout_marginTop="@dimen/dp_sm"
     android:layout_height="wrap_content">
 
     <RelativeLayout
@@ -30,7 +31,7 @@
             android:paddingLeft="@dimen/dp_m"
             android:paddingRight="@dimen/dp_m"
             android:textStyle="bold"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_xl"
             android:text="@string/dumy_title"/>
 
         <TextView
@@ -39,11 +40,10 @@
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/img_poster"
             android:layout_below="@id/tv_title"
-            android:paddingTop="@dimen/dp_m"
             android:paddingLeft="@dimen/dp_m"
             android:paddingRight="@dimen/dp_m"
             android:textStyle="italic"
-            android:textSize="12sp"
+            android:textSize="@dimen/font_m"
             android:text="@string/dumy_release"/>
 
         <TextView
@@ -52,10 +52,11 @@
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/img_poster"
             android:layout_below="@id/tv_release"
-            android:paddingTop="@dimen/dp_m"
-            android:paddingLeft="@dimen/dp_m"
-            android:paddingRight="@dimen/dp_l"
-            android:textSize="14sp"
+            android:paddingTop="@dimen/dp_sm"
+            android:paddingStart="@dimen/dp_m"
+            android:paddingEnd="@dimen/dp_xl"
+            android:layout_marginEnd="@dimen/dp_l"
+            android:textSize="@dimen/font_l"
             android:maxLines="3"
             android:ellipsize="end"
             android:text="@string/dumy_overview"/>

@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/dp_m"
+    android:paddingStart="@dimen/dp_m"
+    android:paddingEnd="@dimen/dp_m"
     tools:context=".fragment.TvShowCatalogueFragment">
 
     <!-- TODO: Update blank fragment layout -->
