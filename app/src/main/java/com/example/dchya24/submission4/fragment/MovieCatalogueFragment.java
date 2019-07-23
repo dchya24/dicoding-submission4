@@ -44,17 +44,24 @@ public class MovieCatalogueFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_movie_catalogue, container, false);
         progressBar = view.findViewById(R.id.pb_movie_catalogue);
         recyclerView = view.findViewById(R.id.rv_movie_catalogue);
+
+        // set up recycler view
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
+
+        // initialize adapter
         movieListAdapter = new MovieListAdapter(getContext());
 
         progressBar.setVisibility(View.VISIBLE);
 
+        // menginialisasi ViewModel
         movieDiscoverViewModel = ViewModelProviders.of(this).get(MovieDiscoverViewModel.class);
         movieDiscoverViewModel.setMutableLiveData();
 
+        // check status
         if(movieDiscoverViewModel.getStatus_code() != 200){
             Log.d("ERROR", movieDiscoverViewModel.getStatus_message());
+            Toast.makeText(getContext(),movieDiscoverViewModel.getStatus_message(), Toast.LENGTH_LONG).show();
         }else{
             movieDiscoverViewModel.getMutableLiveData().observe(this, getListMovie);
         }
