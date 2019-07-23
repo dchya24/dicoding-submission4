@@ -19,7 +19,7 @@ import com.example.dchya24.submission4.support.CustomOnClickListener;
 import java.util.ArrayList;
 
 public class TvShowListAdapter extends RecyclerView.Adapter<TvShowListAdapter.ViewHolder> {
-    private ArrayList<DiscoverTvShow> dIscoverTvShowArrayList = new ArrayList<>();
+    private ArrayList<DiscoverTvShow> discoverTvShowArrayList = new ArrayList<>();
     private final Context context;
 
     public TvShowListAdapter(Context context) {
@@ -27,7 +27,7 @@ public class TvShowListAdapter extends RecyclerView.Adapter<TvShowListAdapter.Vi
     }
 
     public void setdIscoverTvShowArrayList(ArrayList<DiscoverTvShow> dIscoverTvShowArrayList) {
-        this.dIscoverTvShowArrayList = dIscoverTvShowArrayList;
+        this.discoverTvShowArrayList = dIscoverTvShowArrayList;
     }
 
     @NonNull
@@ -40,19 +40,19 @@ public class TvShowListAdapter extends RecyclerView.Adapter<TvShowListAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        viewHolder.bind(dIscoverTvShowArrayList.get(i));
+        viewHolder.bind(discoverTvShowArrayList.get(i));
 
         viewHolder.cvItem.setOnClickListener(new CustomOnClickListener(i, new CustomOnClickListener.OnItemClickCallback() {
             @Override
             public void onItemClicked(View v, int position) {
-                Toast.makeText(context, dIscoverTvShowArrayList.get(position).getName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, discoverTvShowArrayList.get(position).getName(), Toast.LENGTH_SHORT).show();
             }
         }));
     }
 
     @Override
     public int getItemCount() {
-        return dIscoverTvShowArrayList.size();
+        return discoverTvShowArrayList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
