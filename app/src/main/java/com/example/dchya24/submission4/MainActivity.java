@@ -16,6 +16,8 @@ import com.example.dchya24.submission4.fragment.MovieFavoritFragment;
 import com.example.dchya24.submission4.fragment.TvShowCatalogueFragment;
 import com.example.dchya24.submission4.fragment.TvShowFavoritFragment;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -24,33 +26,51 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment fragment;
+            String title;
 
-            switch (item.getItemId()) {
+            switch (item.getItemId()){
                 case R.id.navigation_movie:
                     fragment = new MovieCatalogueFragment();
+                    title =  getResources().getString(R.string.navigation_movie);
+
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.frame_layout, fragment, fragment.getClass().getSimpleName())
                             .commit();
+
+                    Objects.requireNonNull(getSupportActionBar()).setTitle(title);
                     return true;
                 case R.id.navigation_tv_show:
                     fragment = new TvShowCatalogueFragment();
+                    title = getResources().getString(R.string.navigation_tv_show);
+
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.frame_layout, fragment, fragment.getClass().getSimpleName())
                             .commit();
+
+                    Objects.requireNonNull(getSupportActionBar()).setTitle(title);
                     return true;
                 case R.id.navigation_movie_favorit:
                     fragment = new MovieFavoritFragment();
+                    title = getResources().getString(R.string.navigation_movie_favorit);
+
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.frame_layout, fragment, fragment.getClass().getSimpleName())
                             .commit();
+
+                    Objects.requireNonNull(getSupportActionBar()).setTitle(title);
                     return true;
                 case R.id.navigation_tv_show_favorit:
                     fragment = new TvShowFavoritFragment();
+                    title = getResources().getString(R.string.navigation_tv_show_favorit);
+
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.frame_layout, fragment, fragment.getClass().getSimpleName())
                             .commit();
+
+                    Objects.requireNonNull(getSupportActionBar()).setTitle(title);
                     return true;
             }
+
             return false;
         }
     };
@@ -69,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.frame_layout, fragment, fragment.getClass().getSimpleName())
                     .commit();
+
+            Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.navigation_movie);
         }
     }
 
@@ -85,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
         startActivity(intent);
 
-        return true;
+        return super.onOptionsItemSelected(menuItem);
     }
 
 }
