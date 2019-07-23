@@ -17,8 +17,12 @@ import android.widget.Toast;
 
 import com.example.dchya24.submission4.R;
 import com.example.dchya24.submission4.adapter.TvShowListAdapter;
+import com.example.dchya24.submission4.api.JsonApiResponse;
 import com.example.dchya24.submission4.model.DiscoverTvShow;
 import com.example.dchya24.submission4.viewmodel.TvShowDiscoverViewModel;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -47,35 +51,54 @@ public class TvShowCatalogueFragment extends Fragment {
 
         // set up recycler view
         rvTvShow.setLayoutManager(new LinearLayoutManager(getContext()));
-        rvTvShow.setHasFixedSize(true);
+        // rvTvShow.setHasFixedSize(true);
 
         showPogressBar(true);
 
         // set up adapter
         tvShowListAdapter = new TvShowListAdapter(getContext());
+        rvTvShow.setAdapter(tvShowListAdapter);
 
         // deklarasi view model
         TvShowDiscoverViewModel tvShowDiscoverViewModel = ViewModelProviders.of(this).get(TvShowDiscoverViewModel.class);
-        tvShowDiscoverViewModel.setArrayListMutableLiveData();
-
-        // cek keberhasilan mengambil data dari API
-        if(tvShowDiscoverViewModel.getStatus_code() != 200){
-            Toast.makeText(getContext(), tvShowDiscoverViewModel.getStatus_message(), Toast.LENGTH_SHORT).show();
-        }else{
-            tvShowDiscoverViewModel.getArrayListMutableLiveData().observe(this, getListTvDiscover);
-        }
+        tvShowDiscoverViewModel.getData().observe(this, getListTvShow);
 
         return view;
     }
 
-    private Observer<ArrayList<DiscoverTvShow>> getListTvDiscover = new Observer<ArrayList<DiscoverTvShow>>() {
+    private Observer<JsonApiResponse> getListTvShow = new Observer<JsonApiResponse>() {
         @Override
-        public void onChanged(@Nullable ArrayList<DiscoverTvShow> discoverTvShows) {
-            tvShowListAdapter.setdIscoverTvShowArrayList(discoverTvShows);
-            rvTvShow.setAdapter(tvShowListAdapter);
-            showPogressBar(false);
+        public void onChanged(@Nullable JsonApiResponse jsonApiResponse) {
+            final ArrayList<DiscoverTvShow> discoverTvShowArrayList = new ArrayList<>();
+
+            if(jsonApiResponse == null){
+                Toast.makeText(getContext(), "Something Wrong!", Toast.LENGTH_LONG).show();
+            }
+
+            if(jsonApiResponse.getThrowable() == null){
+                try{
+                    String string = jsonApiResponse.getResponseBody().string();
+                    JSONObject jsonObject = new JSONObject(string);
+                    JSONArray results = jsonObject.getJSONArray("results");
+
+                    for(int i = 0; i < results.length(); i++){
+                        DiscoverTvShow discoverTvShow = new DiscoverTvShow(results.getJSONObject(i));
+                        discoverTvShowArrayList.add(discoverTvShow);
+                    }
+
+                    tvShowListAdapter.setdIscoverTvShowArrayList(discoverTvShowArrayList);
+                    showPogressBar(false);
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }else{
+                Toast.makeText(getContext(), jsonApiResponse.getThrowable().getMessage(), Toast.LENGTH_LONG).show();
+                showPogressBar(false);
+            }
         }
     };
+
 
     public void showPogressBar(boolean options){
         if(options){

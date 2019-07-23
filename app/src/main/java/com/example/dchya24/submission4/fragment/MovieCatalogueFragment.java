@@ -4,7 +4,6 @@ package com.example.dchya24.submission4.fragment;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,8 +16,12 @@ import android.widget.Toast;
 
 import com.example.dchya24.submission4.R;
 import com.example.dchya24.submission4.adapter.MovieListAdapter;
+import com.example.dchya24.submission4.api.JsonApiResponse;
 import com.example.dchya24.submission4.model.DiscoverMovie;
 import com.example.dchya24.submission4.viewmodel.MovieDiscoverViewModel;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -47,39 +50,60 @@ public class MovieCatalogueFragment extends Fragment {
 
         // set up recycler view
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setHasFixedSize(true);
+        // recyclerView.setHasFixedSize(true);
 
         // initialize adapter
         movieListAdapter = new MovieListAdapter(getContext());
-
+        recyclerView.setAdapter(movieListAdapter);
         progressBar.setVisibility(View.VISIBLE);
 
         // menginialisasi ViewModel
         movieDiscoverViewModel = ViewModelProviders.of(this).get(MovieDiscoverViewModel.class);
-        movieDiscoverViewModel.setMutableLiveData();
-
-        // check status
-        if(movieDiscoverViewModel.getStatus_code() != 200){
-            Log.d("ERROR", movieDiscoverViewModel.getStatus_message());
-            Toast.makeText(getContext(),movieDiscoverViewModel.getStatus_message(), Toast.LENGTH_LONG).show();
-        }else{
-            movieDiscoverViewModel.getMutableLiveData().observe(this, getListMovie);
-        }
-
+        movieDiscoverViewModel.getData().observe(this, getListMovie);
         return view;
     }
 
-    private Observer<ArrayList<DiscoverMovie>> getListMovie = new Observer<ArrayList<DiscoverMovie>>() {
+    private Observer<JsonApiResponse> getListMovie = new Observer<JsonApiResponse>() {
         @Override
-        public void onChanged(@Nullable ArrayList<DiscoverMovie> discoverMovies) {
-            if(discoverMovies.size() > 0){
-                movieListAdapter.setDiscoverMovies(discoverMovies);
-                recyclerView.setAdapter(movieListAdapter);
-                progressBar.setVisibility(View.GONE);
+        public void onChanged(JsonApiResponse jsonApiResponse) {
+            if(jsonApiResponse == null){
+                Toast.makeText(getContext(), "Something Error", Toast.LENGTH_LONG).show();
+            }
+
+            if(jsonApiResponse.getThrowable() == null){
+                ArrayList<DiscoverMovie> discoverMovies = new ArrayList<>();
+                try {
+                    String data = jsonApiResponse.getResponseBody().string();
+                    JSONObject jsonObject = new JSONObject(data);
+                    JSONArray results = jsonObject.getJSONArray("results");
+
+                    for(int i = 0; i < results.length(); i++){
+                        DiscoverMovie discoverMovie = new DiscoverMovie(results.getJSONObject(i));
+                        discoverMovies.add(discoverMovie);
+                    }
+                    movieListAdapter.setDiscoverMovies(discoverMovies);
+                    showPogressBar(false);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
             }else{
-                Toast.makeText(getContext(), "Tidak ada data", Toast.LENGTH_LONG).show();
+                String activityName = getActivity().getClass().getSimpleName();
+                String  errMessage =  jsonApiResponse.getThrowable().getMessage();
+                Toast.makeText(getContext(), errMessage, Toast.LENGTH_LONG).show();
+                showPogressBar(false);
+                Log.e(activityName, errMessage);
             }
         }
     };
+
+    public void showPogressBar(boolean options){
+        if(options){
+            progressBar.setVisibility(View.VISIBLE);
+        }else{
+            progressBar.setVisibility(View.GONE);
+        }
+    }
 
 }
