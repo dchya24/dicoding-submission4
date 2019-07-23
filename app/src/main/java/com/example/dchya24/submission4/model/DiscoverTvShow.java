@@ -5,11 +5,11 @@ import com.example.dchya24.submission4.BuildConfig;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class DIscoverTvShow {
+public class DiscoverTvShow {
     private int id;
     private String name, overview, first_air_date, poster_path;
 
-    public DIscoverTvShow(JSONObject jsonObject){
+    public DiscoverTvShow(JSONObject jsonObject){
         try{
             this.id = jsonObject.getInt("id");
             this.name = jsonObject.getString("name");
