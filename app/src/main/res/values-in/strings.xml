@@ -12,6 +12,11 @@
     <string name="overview">Gambaran Ikhtisar</string>
     <string name="user_score">Skor Penonton</string>
     <string name="creator">Pembuat</string>
-    <string name="change_localization">Change Localization</string>
+    <string name="change_localization">Ganti Bahasa</string>
+    <string name="tags">Tag</string>
+    <string name="release_date">Tanggal Rilis</string>
+    <string name="text_runtime">Menit</string>
+    <string name="seasons_pic">Foto Musim</string>
+    <string name="season_list">Daftar Musim</string>
 
 </resources>

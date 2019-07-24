@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:paddingStart="@dimen/dp_xl"
+    android:paddingEnd="@dimen/dp_xl"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/text_release_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_m"
+        android:text="@string/release_date"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/rv_genre"/>
+
+    <TextView
+        android:id="@+id/tv_release"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_sm"
+        android:layout_marginEnd="@dimen/dp_xl"
+        android:paddingStart="@dimen/dp_m"
+        android:paddingEnd="@dimen/dp_m"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        app:layout_constraintTop_toBottomOf="@id/text_release_date"/>
+
+    <TextView
+        android:id="@+id/text_user_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_m"
+        android:text="@string/user_score"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/tv_release"/>
+
+    <TextView
+        android:id="@+id/tv_user_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_l"
+        android:paddingStart="@dimen/dp_l"
+        android:paddingEnd="@dimen/dp_m"
+        android:textSize="@dimen/font_l"
+        android:textStyle="italic"
+        app:layout_constraintTop_toBottomOf="@+id/text_user_score" />
+
+    <TextView
+        android:id="@+id/text_overview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_m"
+        android:text="@string/overview"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/tv_user_score" />
+
+    <TextView
+        android:id="@+id/tv_overview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dp_sm"
+        android:paddingStart="@dimen/dp_l"
+        android:paddingEnd="@dimen/dp_l"
+        android:paddingBottom="@dimen/dp_m"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_overview" />
+
+</android.support.constraint.ConstraintLayout>

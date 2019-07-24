@@ -1,4 +1,4 @@
-package com.example.dchya24.submission4.fragment;
+package com.example.dchya24.submission4.views;
 
 
 import android.arch.lifecycle.Observer;
@@ -19,7 +19,7 @@ import com.example.dchya24.submission4.R;
 import com.example.dchya24.submission4.adapter.TvShowListAdapter;
 import com.example.dchya24.submission4.api.JsonApiResponse;
 import com.example.dchya24.submission4.model.DiscoverTvShow;
-import com.example.dchya24.submission4.viewmodel.TvShowDiscoverViewModel;
+import com.example.dchya24.submission4.viewmodels.TvShowDiscoverViewModel;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -32,7 +32,6 @@ import java.util.ArrayList;
  */
 public class TvShowCatalogueFragment extends Fragment {
     private ProgressBar progressBar;
-    private RecyclerView rvTvShow;
     private TvShowListAdapter tvShowListAdapter;
 
 
@@ -47,6 +46,8 @@ public class TvShowCatalogueFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tv_show_catalogue, container, false);
         progressBar = view.findViewById(R.id.pb_tv_catalogue);
+
+        RecyclerView rvTvShow;
         rvTvShow = view.findViewById(R.id.rv_tv_catalogue);
 
         // set up recycler view

@@ -1,9 +1,10 @@
-package com.example.dchya24.submission4.fragment;
+package com.example.dchya24.submission4.views;
 
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,7 +19,7 @@ import com.example.dchya24.submission4.R;
 import com.example.dchya24.submission4.adapter.MovieListAdapter;
 import com.example.dchya24.submission4.api.JsonApiResponse;
 import com.example.dchya24.submission4.model.DiscoverMovie;
-import com.example.dchya24.submission4.viewmodel.MovieDiscoverViewModel;
+import com.example.dchya24.submission4.viewmodels.MovieDiscoverViewModel;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -31,8 +32,6 @@ import java.util.ArrayList;
  */
 public class MovieCatalogueFragment extends Fragment {
     private ProgressBar progressBar;
-    private MovieDiscoverViewModel movieDiscoverViewModel;
-    private RecyclerView recyclerView;
     private MovieListAdapter movieListAdapter;
 
     public MovieCatalogueFragment() {
@@ -41,11 +40,13 @@ public class MovieCatalogueFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_movie_catalogue, container, false);
         progressBar = view.findViewById(R.id.pb_movie_catalogue);
+
+        RecyclerView recyclerView;
         recyclerView = view.findViewById(R.id.rv_movie_catalogue);
 
         // set up recycler view
@@ -58,7 +59,7 @@ public class MovieCatalogueFragment extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
 
         // menginialisasi ViewModel
-        movieDiscoverViewModel = ViewModelProviders.of(this).get(MovieDiscoverViewModel.class);
+        MovieDiscoverViewModel movieDiscoverViewModel = ViewModelProviders.of(this).get(MovieDiscoverViewModel.class);
         movieDiscoverViewModel.getData().observe(this, getListMovie);
         return view;
     }

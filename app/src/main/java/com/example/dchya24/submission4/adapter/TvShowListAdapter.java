@@ -1,6 +1,7 @@
 package com.example.dchya24.submission4.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -9,12 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.dchya24.submission4.R;
 import com.example.dchya24.submission4.model.DiscoverTvShow;
 import com.example.dchya24.submission4.support.CustomOnClickListener;
+import com.example.dchya24.submission4.views.TvShowDetailActivity;
 
 import java.util.ArrayList;
 
@@ -45,7 +46,9 @@ public class TvShowListAdapter extends RecyclerView.Adapter<TvShowListAdapter.Vi
         viewHolder.cvItem.setOnClickListener(new CustomOnClickListener(i, new CustomOnClickListener.OnItemClickCallback() {
             @Override
             public void onItemClicked(View v, int position) {
-                Toast.makeText(context, discoverTvShowArrayList.get(position).getName(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, TvShowDetailActivity.class);
+                intent.putExtra(TvShowDetailActivity.EXTRA_DATA, discoverTvShowArrayList.get(position).getId());
+                context.startActivity(intent);
             }
         }));
     }

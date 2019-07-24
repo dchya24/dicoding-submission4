@@ -16,7 +16,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MovieDiscoverApiRepository {
-    public MovieDbApiInterface movieDbApiInterface;
+    private MovieDbApiInterface movieDbApiInterface;
 
     public  MovieDiscoverApiRepository(){
         movieDbApiInterface = MovieDbApiService.getClient();

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="160dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dp_sm">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/img_season"
+            android:layout_width="160dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:background="@color/fontDark"
+            android:contentDescription="@string/seasons_pic" />
+
+        <TextView
+            android:id="@+id/tv_title_season"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/dp_xl"
+            android:paddingTop="@dimen/dp_sm"
+            android:paddingEnd="@dimen/dp_xl"
+            android:text="@string/dumy_title"
+            android:textStyle="bold"
+            android:textSize="@dimen/font_m"
+            android:gravity="bottom"/>
+
+        <TextView
+            android:id="@+id/tv_air_date_season"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/dp_xl"
+            android:paddingEnd="@dimen/dp_xl"
+            android:paddingBottom="@dimen/dp_sm"
+            android:text="@string/dumy_release"
+            android:textStyle="italic"
+            android:textSize="@dimen/font_sm"
+            android:gravity="bottom"/>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

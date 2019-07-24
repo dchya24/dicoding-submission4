@@ -1,4 +1,4 @@
-package com.example.dchya24.submission4;
+package com.example.dchya24.submission4.views;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,10 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.example.dchya24.submission4.fragment.MovieCatalogueFragment;
-import com.example.dchya24.submission4.fragment.MovieFavoritFragment;
-import com.example.dchya24.submission4.fragment.TvShowCatalogueFragment;
-import com.example.dchya24.submission4.fragment.TvShowFavoritFragment;
+import com.example.dchya24.submission4.R;
 
 import java.util.Objects;
 

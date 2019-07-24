@@ -22,5 +22,10 @@
     <string name="user_score">User Score</string>
     <string name="change_localization">Change Localization</string>
     <string name="creator">Creator</string>
+    <string name="tags">Tags</string>
+    <string name="release_date">Release Date</string>
+    <string name="text_runtime">Minutes</string>
+    <string name="seasons_pic">Seasons Pic</string>
+    <string name="season_list">Season List</string>
 
 </resources>

@@ -1,4 +1,4 @@
-package com.example.dchya24.submission4.viewmodel;
+package com.example.dchya24.submission4.viewmodels;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MediatorLiveData;

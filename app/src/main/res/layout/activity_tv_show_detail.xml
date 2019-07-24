@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.MovieDetailActivity">
+    tools:context=".views.TvShowDetailActivity">
+
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
 
         <include
             android:id="@+id/header_layout"
@@ -32,6 +32,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/tag_layout" />
+
+        <include
+            android:id="@+id/creators_layout"
+            layout="@layout/creators_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/desc_layout" />
+
+        <include
+            android:id="@+id/seasons_layout"
+            layout="@layout/seasons_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/creators_layout" />
+
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
