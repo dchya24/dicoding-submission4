@@ -15,8 +15,7 @@
         android:layout_marginTop="@dimen/dp_m"
         android:text="@string/release_date"
         android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/rv_genre"/>
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/tv_release"

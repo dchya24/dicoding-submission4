@@ -7,7 +7,11 @@ import org.json.JSONObject;
 
 public class DiscoverMovie {
     private int id;
-    private String title, overview, poster_path, release_date;
+    private String title;
+    private String overview;
+    private String poster_path;
+    private String release_date;
+    private String date;
 
     public DiscoverMovie(JSONObject jsonObject) {
         try{
@@ -34,11 +38,23 @@ public class DiscoverMovie {
         return overview;
     }
 
-    public String getPoster_path() {
+    public String getPosterPath() {
+        return poster_path;
+    }
+
+    public String getPosterUrl() {
         return BuildConfig.IMAGE_DB_BASE_URL + poster_path;
     }
 
     public String getRelease_date() {
         return release_date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getDate() {
+        return date;
     }
 }

@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.dchya24.submission4.R;
 
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                     Objects.requireNonNull(getSupportActionBar()).setTitle(title);
                     return true;
                 case R.id.navigation_movie_favorit:
-                    fragment = new MovieFavoritFragment();
+                    fragment = new MovieFavoriteFragment();
                     title = getResources().getString(R.string.navigation_movie_favorit);
 
                     getSupportFragmentManager().beginTransaction()

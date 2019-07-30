@@ -1,6 +1,5 @@
 package com.example.dchya24.submission4.views;
 
-
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
@@ -18,76 +17,64 @@ import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
 import com.example.dchya24.submission4.R;
-import com.example.dchya24.submission4.adapter.TvShowListAdapter;
-import com.example.dchya24.submission4.model.DiscoverTvShow;
+import com.example.dchya24.submission4.adapter.MovieListAdapter;
+import com.example.dchya24.submission4.model.DiscoverMovie;
 import com.example.dchya24.submission4.support.SwipeToDeleteCallback;
-import com.example.dchya24.submission4.viewmodels.TvShowFavoriteViewModel;
+import com.example.dchya24.submission4.viewmodels.MovieFavoriteViewModel;
 
 import java.util.ArrayList;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class TvShowFavoritFragment extends Fragment {
+public class MovieFavoriteFragment extends Fragment {
     private ProgressBar progressBar;
-    private TvShowListAdapter tvShowListAdapter;
-    private RecyclerView recyclerView;
+    private MovieListAdapter movieListAdapter;
     private FrameLayout frameLayout;
+    private RecyclerView rvFavMovie;
 
-    public TvShowFavoritFragment() {
+    public MovieFavoriteFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_tv_show_favorit, container, false);
-        progressBar = view.findViewById(R.id.pb_tv_favorit);
-        recyclerView = view.findViewById(R.id.rv_tv_favorit);
-        frameLayout = view.findViewById(R.id.frame_tv_favorite);
+        View view = inflater.inflate(R.layout.fragment_movie_favorit, container, false);
+        rvFavMovie = view.findViewById(R.id.rv_movie_favorit);
+        progressBar = view.findViewById(R.id.pb_movie_favorit);
+        frameLayout = view.findViewById(R.id.frame_movie_favorite);
 
-        setProgressBar(true);
+        progressBar.setVisibility(View.VISIBLE);
 
-        tvShowListAdapter = new TvShowListAdapter(getActivity());
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(tvShowListAdapter);
+        movieListAdapter = new MovieListAdapter(getContext());
+        rvFavMovie.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvFavMovie.setAdapter(movieListAdapter);
 
-        TvShowFavoriteViewModel tvShowFavoriteViewModel = ViewModelProviders.of(this).get(TvShowFavoriteViewModel.class);
-        tvShowFavoriteViewModel.setTvShowFavorite();
-        tvShowFavoriteViewModel.getArrayListMutableLiveData().observe(this, getListTvShowFav);
+        MovieFavoriteViewModel viewModel = ViewModelProviders.of(this).get(MovieFavoriteViewModel.class);
+        viewModel.setMovieFavorite();
+        viewModel.getMovieMutableLiveData().observe(this, getListData);
 
         enableSwipeToDeleteAndUndo();
 
         return view;
     }
 
-    private Observer<ArrayList<DiscoverTvShow>> getListTvShowFav = new Observer<ArrayList<DiscoverTvShow>>() {
+    private Observer<ArrayList<DiscoverMovie>> getListData = new Observer<ArrayList<DiscoverMovie>>() {
         @Override
-        public void onChanged(@Nullable ArrayList<DiscoverTvShow> discoverTvShows) {
-            tvShowListAdapter.setdIscoverTvShowArrayList(discoverTvShows);
-            setProgressBar(false);
-        }
-    };
-
-    private void setProgressBar(boolean b){
-        if(b){
-            progressBar.setVisibility(View.VISIBLE);
-        }else{
+        public void onChanged(@Nullable ArrayList<DiscoverMovie> discoverMovies) {
+            movieListAdapter.setDiscoverMovies(discoverMovies);
             progressBar.setVisibility(View.GONE);
         }
-    }
+    };
 
     private void enableSwipeToDeleteAndUndo(){
         SwipeToDeleteCallback swipeToDeleteCallback = new SwipeToDeleteCallback(getActivity()){
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i){
                 final int position = viewHolder.getAdapterPosition();
-                final DiscoverTvShow discoverTvShow= tvShowListAdapter.getItem(position);
+                final DiscoverMovie discoverMovie = movieListAdapter.getData(position);
 
-                tvShowListAdapter.removeItem(position, discoverTvShow);
+                movieListAdapter.removeItem(position, discoverMovie);
 
                 Snackbar snackbar = Snackbar.make(frameLayout,
                         getResources().getString(R.string.has_remove_movie_favorite), Snackbar.LENGTH_LONG);
@@ -96,8 +83,8 @@ public class TvShowFavoritFragment extends Fragment {
 
                     @Override
                     public void onClick(View v) {
-                        tvShowListAdapter.restoreItem(position, discoverTvShow);
-                        recyclerView.scrollToPosition(position);
+                        movieListAdapter.restoreItem(discoverMovie, position);
+                        rvFavMovie.scrollToPosition(position);
                     }
                 });
 
@@ -106,7 +93,8 @@ public class TvShowFavoritFragment extends Fragment {
         };
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeToDeleteCallback);
-        itemTouchHelper.attachToRecyclerView(recyclerView);
+        itemTouchHelper.attachToRecyclerView(rvFavMovie);
     }
 
 }
+

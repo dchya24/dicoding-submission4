@@ -7,7 +7,7 @@ import org.json.JSONObject;
 
 public class DiscoverTvShow {
     private int id;
-    private String name, overview, first_air_date, poster_path;
+    private String name, overview, first_air_date, poster_path, date;
 
     public DiscoverTvShow(JSONObject jsonObject){
         try{
@@ -40,5 +40,13 @@ public class DiscoverTvShow {
 
     public String getPoster_path() {
         return BuildConfig.IMAGE_DB_BASE_URL + poster_path;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

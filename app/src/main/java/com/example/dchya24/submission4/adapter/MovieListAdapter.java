@@ -1,5 +1,6 @@
 package com.example.dchya24.submission4.adapter;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -14,7 +15,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.dchya24.submission4.R;
 import com.example.dchya24.submission4.model.DiscoverMovie;
+import com.example.dchya24.submission4.model.MovieFavorite;
+import com.example.dchya24.submission4.repository.MovieFavoriteRepository;
 import com.example.dchya24.submission4.support.CustomOnClickListener;
+import com.example.dchya24.submission4.viewmodels.MovieDetailViewModel;
+import com.example.dchya24.submission4.viewmodels.MovieFavoriteViewModel;
 import com.example.dchya24.submission4.views.MovieDetailActivity;
 
 import java.util.ArrayList;
@@ -22,9 +27,11 @@ import java.util.ArrayList;
 public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.ViewHolder> {
     private ArrayList<DiscoverMovie> discoverMovies = new ArrayList<>();
     private final Context context;
+    private MovieDetailViewModel movieDetailViewModel;
 
     public MovieListAdapter(Context context) {
         this.context = context;
+        movieDetailViewModel = new MovieDetailViewModel((Application) context.getApplicationContext());
     }
 
     public void setDiscoverMovies(ArrayList<DiscoverMovie> discoverMovies) {
@@ -58,6 +65,40 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.View
         return discoverMovies.size();
     }
 
+    public DiscoverMovie getData(int i){
+        return discoverMovies.get(i);
+    }
+
+    public void removeItem(int position, DiscoverMovie discoverMovie){
+        MovieFavorite movieFavorite = new MovieFavorite();
+
+        movieFavorite.setDate(discoverMovie.getDate());
+        movieFavorite.setTitle(discoverMovie.getTitle());
+        movieFavorite.setRelease_date(discoverMovie.getRelease_date());
+        movieFavorite.setId(discoverMovie.getId());
+        movieFavorite.setPoster_path(discoverMovie.getPosterPath());
+        movieFavorite.setOverview(discoverMovie.getOverview());
+
+        movieDetailViewModel.deleteFavoriteMovie(movieFavorite);
+        discoverMovies.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    public void restoreItem(DiscoverMovie discoverMovie,int position){
+        MovieFavorite movieFavorite = new MovieFavorite();
+
+        movieFavorite.setDate(discoverMovie.getDate());
+        movieFavorite.setTitle(discoverMovie.getTitle());
+        movieFavorite.setRelease_date(discoverMovie.getRelease_date());
+        movieFavorite.setId(discoverMovie.getId());
+        movieFavorite.setPoster_path(discoverMovie.getPosterPath());
+        movieFavorite.setOverview(discoverMovie.getOverview());
+
+        movieDetailViewModel.insertFavoriteMovie(movieFavorite);
+        discoverMovies.add(position, discoverMovie);
+        notifyItemInserted(position);
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView tvTitle, tvOverview, tvReleaseDate;
         private ImageView imagePoster;
@@ -77,7 +118,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.View
             tvOverview.setText(discoverMovie.getOverview());
             tvReleaseDate.setText(discoverMovie.getRelease_date());
 
-            Glide.with(context).load(discoverMovie.getPoster_path()).into(imagePoster);
+            Glide.with(context).load(discoverMovie.getPosterUrl()).into(imagePoster);
         }
     }
 }

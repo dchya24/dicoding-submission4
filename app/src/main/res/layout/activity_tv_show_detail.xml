@@ -1,72 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.TvShowDetailActivity">
 
-
-    <android.support.constraint.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <include
-            android:id="@+id/header_layout"
-            layout="@layout/header_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <include
-            android:id="@+id/tag_layout"
-            layout="@layout/tags_layout"
-            android:layout_marginTop="@dimen/dp_m"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/header_layout" />
-
-        <include
-            android:id="@+id/desc_layout"
-            layout="@layout/desc_layout"
-            android:layout_marginTop="@dimen/dp_m"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/tag_layout" />
-
-        <include
-            android:id="@+id/creators_layout"
-            layout="@layout/creators_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/desc_layout" />
-
-        <include
-            android:id="@+id/seasons_layout"
-            layout="@layout/seasons_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/creators_layout" />
-
+        android:layout_height="match_parent">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toBottomOf="@id/img_back"
-            app:layout_constraintStart_toStartOf="parent"   >
+            android:layout_height="wrap_content"
+            android:paddingBottom="36dp">
 
-            <ProgressBar
-                android:id="@+id/progressBar"
-                style="@style/Widget.AppCompat.ProgressBar"
+            <include
+                android:id="@+id/header_layout"
+                layout="@layout/header_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <include
+                android:id="@+id/tag_layout"
+                layout="@layout/tags_layout"
+                android:layout_marginTop="@dimen/dp_m"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/dp_l"
-                android:layout_marginStart="@dimen/dp_m"
-                android:visibility="visible" />
+                app:layout_constraintTop_toBottomOf="@+id/header_layout" />
+
+            <include
+                android:id="@+id/desc_layout"
+                layout="@layout/desc_layout"
+                android:layout_marginTop="@dimen/dp_m"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tag_layout" />
+
+            <include
+                android:id="@+id/creators_layout"
+                layout="@layout/creators_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/desc_layout" />
+
+            <include
+                android:id="@+id/seasons_layout"
+                layout="@layout/seasons_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/creators_layout" />
+
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toBottomOf="@id/img_back"
+                app:layout_constraintStart_toStartOf="parent"   >
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="@style/Widget.AppCompat.ProgressBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dp_l"
+                    android:layout_marginStart="@dimen/dp_m"
+                    android:visibility="visible" />
+
+            </android.support.constraint.ConstraintLayout>
 
         </android.support.constraint.ConstraintLayout>
 
-    </android.support.constraint.ConstraintLayout>
-</ScrollView>
+    </ScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_l"
+        android:layout_marginBottom="@dimen/dp_m"
+        app:backgroundTint="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintWidth_max="36dp"
+        app:layout_constraintHeight_max="36dp"
+        app:srcCompat="@drawable/ic_favorite_border_black_32dp" />
+
+</android.support.constraint.ConstraintLayout>

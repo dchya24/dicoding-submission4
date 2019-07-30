@@ -1,25 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:id="@+id/header_constraint"
     android:layout_height="match_parent">
     <ImageView
         android:id="@+id/img_back"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="275dp"
         android:layout_marginBottom="8dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/big_poster"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
+        android:src="@drawable/backdrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:layout_constraintVertical_chainStyle="spread_inside"/>
-
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
         android:id="@+id/img_poster"
@@ -30,7 +26,9 @@
         android:contentDescription="@string/poster_desc"
         android:elevation="@dimen/dp_sm"
         android:padding="@dimen/dp_m"
+        android:background="@color/fontLight"
         android:scaleType="centerCrop"
+        android:src="@drawable/poster_alita"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/img_back" />
 
@@ -54,16 +52,5 @@
         android:textStyle="italic"
         app:layout_constraintStart_toEndOf="@+id/img_poster"
         app:layout_constraintTop_toBottomOf="@+id/tv_title" />
-
-    <TextView
-        android:id="@+id/tv_favorite"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/dp_xl"
-        android:layout_marginTop="@dimen/dp_l"
-        android:drawableRight="@drawable/ic_favorite_border_black_32dp"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/img_back"/>
 
 </android.support.constraint.ConstraintLayout>

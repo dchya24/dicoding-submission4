@@ -2,15 +2,15 @@
 <resources>
     <string name="app_title">Hiburan</string>
     <string name="navigation_movie">Film</string>
-    <string name="navigation_tv_show">Acata tv</string>
+    <string name="navigation_tv_show">Acara TV</string>
     <string name="navigation_movie_favorit">Film Favorit</string>
-    <string name="navigation_tv_show_favorit">Acara Tv Favorit</string>
+    <string name="navigation_tv_show_favorit">Acara TV Favorit</string>
 
     <string name="poster_desc"> Poster Film </string>
     <string name="big_poster">Poster Besar</string>
     <string name="director">Direktur</string>
     <string name="overview">Gambaran Ikhtisar</string>
-    <string name="user_score">Skor Penonton</string>
+    <string name="user_score">Penilaian</string>
     <string name="creator">Pembuat</string>
     <string name="change_localization">Ganti Bahasa</string>
     <string name="tags">Tag</string>
@@ -18,5 +18,12 @@
     <string name="text_runtime">Menit</string>
     <string name="seasons_pic">Foto Musim</string>
     <string name="season_list">Daftar Musim</string>
+    <string name="has_remove_movie_favorite">Anda Sudah menghapuskan film ini dari daftar favorit</string>
+    <string name="has_add_movie_favorite">Anda Sudah menambahkan film ini ke daftar favorit</string>
+
+
+    <string name="has_remove_tvshow_favorite">Anda Sudah menghapuskan Acara TV ini dari daftar favorit</string>
+    <string name="has_add_tvshow_favorite">Anda Sudah menambahkan Acara TV ini ke daftar favorit</string>
+    <string name="undo">Urungkan</string>
 
 </resources>

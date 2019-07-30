@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,10 +23,12 @@ import com.example.dchya24.submission4.adapter.CreatorAdapter;
 import com.example.dchya24.submission4.adapter.GenreAdapter;
 import com.example.dchya24.submission4.adapter.SeasonAdapter;
 import com.example.dchya24.submission4.api.TvShowDetailApiResponse;
+import com.example.dchya24.submission4.model.MovieFavorite;
 import com.example.dchya24.submission4.model.TvShow;
+import com.example.dchya24.submission4.model.TvShowFavorite;
 import com.example.dchya24.submission4.viewmodels.TvShowDetailViewModel;
 
-public class TvShowDetailActivity extends AppCompatActivity {
+public class TvShowDetailActivity extends AppCompatActivity implements View.OnClickListener{
     public static final String EXTRA_DATA = "extra_data";
     private ImageView imgPoster, imgBackdrop;
     private TextView tvTitle, tvRelease, tvRate, tvOverview, textUserScore;
@@ -35,6 +38,10 @@ public class TvShowDetailActivity extends AppCompatActivity {
     private CreatorAdapter creatorAdapter;
     private SeasonAdapter seasonAdapter;
     private TvShow tvShow;
+    private FloatingActionButton fabFavorite;
+    private boolean status_favorite = false;
+    private TvShowFavorite tvShowFavorite = new TvShowFavorite();
+    private TvShowDetailViewModel tvShowDetailViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,12 +61,14 @@ public class TvShowDetailActivity extends AppCompatActivity {
         textCreator = findViewById(R.id.text_creator);
         textSeasonList = findViewById(R.id.text_season);
         textRelease = findViewById(R.id.text_release_date);
+        fabFavorite = findViewById(R.id.fab_favorite);
 
         RecyclerView rvGenre = findViewById(R.id.rv_genre);
         RecyclerView rvCreator = findViewById(R.id.rv_creator);
         RecyclerView rvSeason = findViewById(R.id.rv_season);
 
         setViewVisible(false);
+        showFavoriteView(false);
         showLoading(true);
 
         if(getSupportActionBar() != null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -73,12 +82,13 @@ public class TvShowDetailActivity extends AppCompatActivity {
         creatorAdapter = new CreatorAdapter(this);
 
         rvCreator.setAdapter(creatorAdapter);
-        rvGenre.setAdapter(genreAdapter);
         rvSeason.setAdapter(seasonAdapter);
+        rvGenre.setAdapter(genreAdapter);
 
         int i = getIntent().getIntExtra(EXTRA_DATA, 0);
-        TvShowDetailViewModel tvShowDetailViewModel = ViewModelProviders.of(this).get(TvShowDetailViewModel.class);
+        tvShowDetailViewModel = ViewModelProviders.of(this).get(TvShowDetailViewModel.class);
         tvShowDetailViewModel.getData(i).observe(this, getTvShowDetail);
+        tvShowDetailViewModel.getTvShowFavoriteById(i);
     }
 
     private Observer<TvShowDetailApiResponse> getTvShowDetail = new Observer<TvShowDetailApiResponse>() {
@@ -118,6 +128,7 @@ public class TvShowDetailActivity extends AppCompatActivity {
             textUserScore.setVisibility(View.VISIBLE);
             textTags.setVisibility(View.VISIBLE);
             textRelease.setVisibility(View.VISIBLE);
+            imgBackdrop.setVisibility(View.VISIBLE);
         }else{
 
             imgPoster.setVisibility(View.GONE);
@@ -127,6 +138,7 @@ public class TvShowDetailActivity extends AppCompatActivity {
             textUserScore.setVisibility(View.GONE);
             textTags.setVisibility(View.GONE);
             textRelease.setVisibility(View.GONE);
+            imgBackdrop.setVisibility(View.GONE);
 
         }
     }
@@ -146,12 +158,69 @@ public class TvShowDetailActivity extends AppCompatActivity {
         tvOverview.setText(tvShow.getOverview());
         tvRate.setText(tvShow.getVoteAverage());
 
-        Glide.with(getApplicationContext()).load(tvShow.getPosterPath()).into(imgPoster);
+        Glide.with(getApplicationContext()).load(tvShow.getPosterURL()).into(imgPoster);
         Glide.with(getApplicationContext()).load(tvShow.getBackdropPath()).into(imgBackdrop);
+
+        status_favorite = tvShowDetailViewModel.getStatus_favorite();
+        showFavoriteView(true);
 
         genreAdapter.setGenreArrayList(tvShow.getGenres());
         seasonAdapter.setSeasonArrayList(tvShow.getSeasons());
         creatorAdapter.setCreatedByArrayList(tvShow.getCreatedBy());
 
+        tvShowFavorite.setId(tvShow.getId());
+        tvShowFavorite.setFirst_air_date(tvShow.getFirstAirDate());
+        tvShowFavorite.setName(tvShow.getName());
+        tvShowFavorite.setOverview(tvShow.getOverview());
+        tvShowFavorite.setPoster_path(tvShow.getPosterPath());
+
+        fabFavorite.setOnClickListener(this);
     }
+
+    private void showFavoriteView(boolean b){
+        if(b){
+            if(status_favorite){
+                setFavButtonIcon(true);
+            }else{
+                setFavButtonIcon(false);
+            }
+
+            fabFavorite.show();
+            fabFavorite.setClickable(true);
+
+        }else{
+            fabFavorite.hide();
+        }
+    }
+
+    public void clickFavorite(TvShowFavorite tvShowFavorite){
+        if(status_favorite){
+            tvShowDetailViewModel.deleteTvShowFavorite(tvShowFavorite);
+            setFavButtonIcon(false);
+            Toast.makeText(this, getString(R.string.has_remove_movie_favorite), Toast.LENGTH_SHORT).show();
+        }else{
+            tvShowDetailViewModel.insertTvShowFavorite(tvShowFavorite);
+            setFavButtonIcon(true);
+            Toast.makeText(this, getString(R.string.has_add_movie_favorite), Toast.LENGTH_SHORT).show();
+            status_favorite = true;
+        }
+    }
+
+    private void setFavButtonIcon(boolean b){
+        if(b){
+            fabFavorite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favorite_black_32dp));
+        }else{
+            fabFavorite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favorite_border_black_32dp));
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.fab_favorite:
+                clickFavorite(tvShowFavorite);
+                break;
+        }
+    }
+
 }

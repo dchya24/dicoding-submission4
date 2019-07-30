@@ -19,7 +19,7 @@
             android:layout_marginStart="@dimen/dp_m"
             android:layout_marginEnd="@dimen/dp_sm"
             android:layout_height="130dp"
-            android:background="@color/colorSecondaryDark"
+            android:background="@color/fontLight"
             android:contentDescription="@string/poster_desc"/>
 
         <TextView

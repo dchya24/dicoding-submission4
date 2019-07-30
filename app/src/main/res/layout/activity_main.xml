@@ -12,8 +12,8 @@
         android:id="@+id/frame_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="@dimen/dp_sm"
-        android:layout_marginEnd="@dimen/dp_sm"
+        android:layout_marginStart="@dimen/dp_m"
+        android:layout_marginEnd="@dimen/dp_m"
         android:paddingTop="@dimen/dp_sm"
         android:paddingBottom="56dp"/>
 

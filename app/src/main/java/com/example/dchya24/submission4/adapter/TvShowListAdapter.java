@@ -1,5 +1,6 @@
 package com.example.dchya24.submission4.adapter;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -14,7 +15,10 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.dchya24.submission4.R;
 import com.example.dchya24.submission4.model.DiscoverTvShow;
+import com.example.dchya24.submission4.model.TvShowFavorite;
 import com.example.dchya24.submission4.support.CustomOnClickListener;
+import com.example.dchya24.submission4.viewmodels.TvShowDetailViewModel;
+import com.example.dchya24.submission4.viewmodels.TvShowFavoriteViewModel;
 import com.example.dchya24.submission4.views.TvShowDetailActivity;
 
 import java.util.ArrayList;
@@ -22,9 +26,11 @@ import java.util.ArrayList;
 public class TvShowListAdapter extends RecyclerView.Adapter<TvShowListAdapter.ViewHolder> {
     private ArrayList<DiscoverTvShow> discoverTvShowArrayList = new ArrayList<>();
     private final Context context;
+    private TvShowDetailViewModel tvShowDetailViewModel;
 
     public TvShowListAdapter(Context context) {
         this.context = context;
+        tvShowDetailViewModel = new TvShowDetailViewModel((Application) context.getApplicationContext());
     }
 
     public void setdIscoverTvShowArrayList(ArrayList<DiscoverTvShow> dIscoverTvShowArrayList) {
@@ -56,6 +62,40 @@ public class TvShowListAdapter extends RecyclerView.Adapter<TvShowListAdapter.Vi
     @Override
     public int getItemCount() {
         return discoverTvShowArrayList.size();
+    }
+
+    public DiscoverTvShow getItem(int position){
+        return discoverTvShowArrayList.get(position);
+    }
+
+    public void removeItem(int position, DiscoverTvShow discoverTvShow){
+        TvShowFavorite tvShowFavorite = new TvShowFavorite();
+
+        tvShowFavorite.setDate(discoverTvShow.getDate());
+        tvShowFavorite.setName(discoverTvShow.getName());
+        tvShowFavorite.setFirst_air_date(discoverTvShow.getFirst_air_date());
+        tvShowFavorite.setPoster_path(discoverTvShow.getPoster_path());
+        tvShowFavorite.setOverview(discoverTvShow.getOverview());
+        tvShowFavorite.setId(discoverTvShow.getId());
+
+        tvShowDetailViewModel.deleteTvShowFavorite(tvShowFavorite);
+        discoverTvShowArrayList.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    public void restoreItem(int position, DiscoverTvShow discoverTvShow){
+        TvShowFavorite tvShowFavorite = new TvShowFavorite();
+
+        tvShowFavorite.setDate(discoverTvShow.getDate());
+        tvShowFavorite.setName(discoverTvShow.getName());
+        tvShowFavorite.setFirst_air_date(discoverTvShow.getFirst_air_date());
+        tvShowFavorite.setPoster_path(discoverTvShow.getPoster_path());
+        tvShowFavorite.setOverview(discoverTvShow.getOverview());
+        tvShowFavorite.setId(discoverTvShow.getId());
+
+        tvShowDetailViewModel.insertTvShowFavorite(tvShowFavorite);
+        discoverTvShowArrayList.add(position, discoverTvShow);
+        notifyItemInserted(position);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

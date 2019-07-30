@@ -47,17 +47,17 @@ public class Movie {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public String getOverview() {
         return overview;
     }
 
     public String getPosterPath() {
+        return posterPath;
+    }
+    public String getPosterURL() {
         return BuildConfig.IMAGE_DB_BASE_URL + posterPath;
     }
+
 
     public String getReleaseDate() {
         return releaseDate;

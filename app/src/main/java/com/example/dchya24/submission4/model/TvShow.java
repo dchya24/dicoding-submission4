@@ -64,16 +64,8 @@ public class TvShow {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getOverview() {
@@ -81,6 +73,10 @@ public class TvShow {
     }
 
     public String getPosterPath() {
+        return posterPath;
+    }
+
+    public String getPosterURL() {
         return BuildConfig.IMAGE_DB_BASE_URL +  posterPath;
     }
 
