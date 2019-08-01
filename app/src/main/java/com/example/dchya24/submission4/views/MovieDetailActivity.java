@@ -159,7 +159,7 @@ public class MovieDetailActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
-    public void clickFavorite(MovieFavorite movieFavorite){
+    private void clickFavorite(MovieFavorite movieFavorite){
         if(status_favorite){
             movieDetailViewModel.deleteFavoriteMovie(movieFavorite);
             setFavButtonIcon(false);
@@ -182,10 +182,8 @@ public class MovieDetailActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.fab_favorite:
-                clickFavorite(movieFavorite);
-                break;
+        if(v.getId() == R.id.fab_favorite){
+            clickFavorite(movieFavorite);
         }
     }
 

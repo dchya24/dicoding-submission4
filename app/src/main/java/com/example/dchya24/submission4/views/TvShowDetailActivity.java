@@ -23,7 +23,6 @@ import com.example.dchya24.submission4.adapter.CreatorAdapter;
 import com.example.dchya24.submission4.adapter.GenreAdapter;
 import com.example.dchya24.submission4.adapter.SeasonAdapter;
 import com.example.dchya24.submission4.api.TvShowDetailApiResponse;
-import com.example.dchya24.submission4.model.MovieFavorite;
 import com.example.dchya24.submission4.model.TvShow;
 import com.example.dchya24.submission4.model.TvShowFavorite;
 import com.example.dchya24.submission4.viewmodels.TvShowDetailViewModel;
@@ -38,6 +37,7 @@ public class TvShowDetailActivity extends AppCompatActivity implements View.OnCl
     private CreatorAdapter creatorAdapter;
     private SeasonAdapter seasonAdapter;
     private TvShow tvShow;
+    private RecyclerView rvGenre, rvSeason, rvCreator;
     private FloatingActionButton fabFavorite;
     private boolean status_favorite = false;
     private TvShowFavorite tvShowFavorite = new TvShowFavorite();
@@ -63,9 +63,9 @@ public class TvShowDetailActivity extends AppCompatActivity implements View.OnCl
         textRelease = findViewById(R.id.text_release_date);
         fabFavorite = findViewById(R.id.fab_favorite);
 
-        RecyclerView rvGenre = findViewById(R.id.rv_genre);
-        RecyclerView rvCreator = findViewById(R.id.rv_creator);
-        RecyclerView rvSeason = findViewById(R.id.rv_season);
+        rvGenre = findViewById(R.id.rv_genre);
+        rvCreator = findViewById(R.id.rv_creator);
+        rvSeason = findViewById(R.id.rv_season);
 
         setViewVisible(false);
         showFavoriteView(false);
@@ -81,9 +81,6 @@ public class TvShowDetailActivity extends AppCompatActivity implements View.OnCl
         seasonAdapter = new SeasonAdapter(this);
         creatorAdapter = new CreatorAdapter(this);
 
-        rvCreator.setAdapter(creatorAdapter);
-        rvSeason.setAdapter(seasonAdapter);
-        rvGenre.setAdapter(genreAdapter);
 
         int i = getIntent().getIntExtra(EXTRA_DATA, 0);
         tvShowDetailViewModel = ViewModelProviders.of(this).get(TvShowDetailViewModel.class);
@@ -173,6 +170,10 @@ public class TvShowDetailActivity extends AppCompatActivity implements View.OnCl
         tvShowFavorite.setName(tvShow.getName());
         tvShowFavorite.setOverview(tvShow.getOverview());
         tvShowFavorite.setPoster_path(tvShow.getPosterPath());
+
+        rvGenre.setAdapter(genreAdapter);
+        rvCreator.setAdapter(creatorAdapter);
+        rvSeason.setAdapter(seasonAdapter);
 
         fabFavorite.setOnClickListener(this);
     }

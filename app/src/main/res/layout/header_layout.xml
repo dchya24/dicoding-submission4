@@ -12,7 +12,7 @@
         android:adjustViewBounds="true"
         android:contentDescription="@string/big_poster"
         android:scaleType="centerCrop"
-        android:src="@drawable/backdrop"
+        android:background="@color/fontDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>

@@ -19,8 +19,6 @@ public class FavoriteSupport {
 
     private int STATUS_REQUEST;
     private int item_id;
-    private Long insert_status;
-    private int delete_status;
 
     private MovieFavorite movieFavorite;
     private List<MovieFavorite> movieFavoriteList;
@@ -70,7 +68,7 @@ public class FavoriteSupport {
     }
 
     public void setStatusInsert(Long status) {
-        this.insert_status = status;
+        Long insert_status = status;
     }
 
     public void setItem_id(int item_id) {
@@ -82,7 +80,7 @@ public class FavoriteSupport {
     }
 
     public void setDeleteStatus(int delete_status) {
-        this.delete_status = delete_status;
+        int delete_status1 = delete_status;
     }
 
     public TvShowFavorite getTvShowFavorite() {

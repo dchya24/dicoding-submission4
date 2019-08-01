@@ -38,8 +38,11 @@ public class DiscoverTvShow {
         return first_air_date;
     }
 
-    public String getPoster_path() {
+    public String getPosterURL() {
         return BuildConfig.IMAGE_DB_BASE_URL + poster_path;
+    }
+    public String getPoster_path() {
+        return poster_path;
     }
 
     public String getDate() {

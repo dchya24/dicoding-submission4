@@ -117,7 +117,7 @@ public class TvShowListAdapter extends RecyclerView.Adapter<TvShowListAdapter.Vi
             tvFirstAirDate.setText(discoverTvShow.getFirst_air_date());
             tvOverview.setText(discoverTvShow.getOverview());
 
-            Glide.with(context).load(discoverTvShow.getPoster_path()).into(imagePoster);
+            Glide.with(context).load(discoverTvShow.getPosterURL()).into(imagePoster);
         }
     }
 }
