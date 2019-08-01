@@ -34,5 +34,11 @@
     <string name="has_remove_tvshow_favorite">You\'ve already removed this Tv Show from favorite list</string>
     <string name="has_add_tvshow_favorite">You\'ve added this Tv Show to the favorite list</string>
     <string name="undo">Undo</string>
+    <string name="appwidget_text" translatable="false">example</string>
+    <string name="add_widget" translatable="false">Add widget</string>
+    <string name="empty_text" translatable="false">No Data</string>
+
+    <string name="movie_widget_text" translatable="false">Movie Widget</string>
+    <string name="reminder_text">Reminder Settings</string>
 
 </resources>

@@ -26,4 +26,6 @@
     <string name="has_add_tvshow_favorite">Anda Sudah menambahkan Acara TV ini ke daftar favorit</string>
     <string name="undo">Urungkan</string>
 
+    <string name="reminder_text">Setting Pengingat</string>
+
 </resources>

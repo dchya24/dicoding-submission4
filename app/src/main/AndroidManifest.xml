@@ -21,7 +21,19 @@
             </intent-filter>
         </activity>
         <activity android:name=".views.MovieDetailActivity" />
-        <activity android:name=".views.TvShowDetailActivity"></activity>
+        <activity android:name=".views.TvShowDetailActivity" />
+
+        <receiver android:name=".widget.MovieFavoriteWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/movie_favorite_widget_info" />
+        </receiver>
+        <service android:name=".widget.StackWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"/>
     </application>
 
 </manifest>
