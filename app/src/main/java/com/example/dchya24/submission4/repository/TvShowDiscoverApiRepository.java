@@ -23,12 +23,29 @@ public class TvShowDiscoverApiRepository {
     }
 
     public MutableLiveData<JsonApiResponse> getDiscoverTvShow(){
-        final MutableLiveData<JsonApiResponse> apiResponseMutableLiveData = new MutableLiveData<>();
         Map<String, String> map = new HashMap<>();
         map.put("api_key", BuildConfig.API_KEY);
         map.put("language", "en-US");
 
         Call<ResponseBody> responseBodyCall =  movieDbApiInterface.getDiscoverTvJson(map);
+
+        return responseBody(responseBodyCall);
+    }
+
+    public MutableLiveData<JsonApiResponse> searchTvShow(String query){
+        Map<String, String> map = new HashMap<>();
+        map.put("api_key", BuildConfig.API_KEY);
+        map.put("language", "en-US");
+        map.put("query", query);
+
+        Call<ResponseBody> responseBodyCall =  movieDbApiInterface.searchDiscoverTvJson(map);
+
+        return responseBody(responseBodyCall);
+    }
+
+    private MutableLiveData<JsonApiResponse> responseBody(Call<ResponseBody> responseBodyCall){
+        final MutableLiveData<JsonApiResponse> apiResponseMutableLiveData = new MutableLiveData<>();
+
         responseBodyCall.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -44,6 +61,5 @@ public class TvShowDiscoverApiRepository {
         });
 
         return apiResponseMutableLiveData;
-
     }
 }

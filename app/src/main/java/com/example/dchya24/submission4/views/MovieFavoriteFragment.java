@@ -39,7 +39,13 @@ public class MovieFavoriteFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_movie_favorit, container, false);
+        return inflater.inflate(R.layout.fragment_movie_favorit, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
+        super.onViewCreated(view, savedInstanceState);
+
         rvFavMovie = view.findViewById(R.id.rv_movie_favorit);
         progressBar = view.findViewById(R.id.pb_movie_favorit);
         frameLayout = view.findViewById(R.id.frame_movie_favorite);
@@ -48,21 +54,20 @@ public class MovieFavoriteFragment extends Fragment {
 
         movieListAdapter = new MovieListAdapter(getContext());
         rvFavMovie.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvFavMovie.setAdapter(movieListAdapter);
 
         MovieFavoriteViewModel viewModel = ViewModelProviders.of(this).get(MovieFavoriteViewModel.class);
         viewModel.setMovieFavorite();
         viewModel.getMovieMutableLiveData().observe(this, getListData);
 
         enableSwipeToDeleteAndUndo();
-
-        return view;
     }
 
     private Observer<ArrayList<DiscoverMovie>> getListData = new Observer<ArrayList<DiscoverMovie>>() {
         @Override
         public void onChanged(@Nullable ArrayList<DiscoverMovie> discoverMovies) {
             movieListAdapter.setDiscoverMovies(discoverMovies);
+            rvFavMovie.setAdapter(movieListAdapter);
+
             progressBar.setVisibility(View.GONE);
         }
     };

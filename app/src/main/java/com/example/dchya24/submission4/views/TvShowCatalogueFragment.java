@@ -33,7 +33,7 @@ import java.util.ArrayList;
 public class TvShowCatalogueFragment extends Fragment {
     private ProgressBar progressBar;
     private TvShowListAdapter tvShowListAdapter;
-
+    private RecyclerView rvTvShow;
 
     public TvShowCatalogueFragment() {
         // Required empty public constructor
@@ -44,10 +44,14 @@ public class TvShowCatalogueFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_tv_show_catalogue, container, false);
-        progressBar = view.findViewById(R.id.pb_tv_catalogue);
+        return inflater.inflate(R.layout.fragment_tv_show_catalogue, container, false);
+    }
 
-        RecyclerView rvTvShow;
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
+        super.onViewCreated(view,savedInstanceState);
+
+        progressBar = view.findViewById(R.id.pb_tv_catalogue);
         rvTvShow = view.findViewById(R.id.rv_tv_catalogue);
 
         // set up recycler view
@@ -58,13 +62,10 @@ public class TvShowCatalogueFragment extends Fragment {
 
         // set up adapter
         tvShowListAdapter = new TvShowListAdapter(getContext());
-        rvTvShow.setAdapter(tvShowListAdapter);
 
         // deklarasi view model
         TvShowDiscoverViewModel tvShowDiscoverViewModel = ViewModelProviders.of(this).get(TvShowDiscoverViewModel.class);
         tvShowDiscoverViewModel.getData().observe(this, getListTvShow);
-
-        return view;
     }
 
     private Observer<JsonApiResponse> getListTvShow = new Observer<JsonApiResponse>() {
@@ -87,6 +88,7 @@ public class TvShowCatalogueFragment extends Fragment {
                         discoverTvShowArrayList.add(discoverTvShow);
                     }
 
+                    rvTvShow.setAdapter(tvShowListAdapter);
                     tvShowListAdapter.setdIscoverTvShowArrayList(discoverTvShowArrayList);
                     showPogressBar(false);
 
@@ -101,7 +103,8 @@ public class TvShowCatalogueFragment extends Fragment {
     };
 
 
-    public void showPogressBar(boolean options){
+
+    private void showPogressBar(boolean options){
         if(options){
             progressBar.setVisibility(View.VISIBLE);
         }else{

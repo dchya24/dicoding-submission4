@@ -44,7 +44,12 @@ public class TvShowFavoritFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_tv_show_favorit, container, false);
+        return inflater.inflate(R.layout.fragment_tv_show_favorit, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
+        super.onViewCreated(view, savedInstanceState);
         progressBar = view.findViewById(R.id.pb_tv_favorit);
         recyclerView = view.findViewById(R.id.rv_tv_favorit);
         frameLayout = view.findViewById(R.id.frame_tv_favorite);
@@ -53,7 +58,6 @@ public class TvShowFavoritFragment extends Fragment {
 
         tvShowListAdapter = new TvShowListAdapter(getActivity());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(tvShowListAdapter);
 
         TvShowFavoriteViewModel tvShowFavoriteViewModel = ViewModelProviders.of(this).get(TvShowFavoriteViewModel.class);
         tvShowFavoriteViewModel.setTvShowFavorite();
@@ -61,13 +65,13 @@ public class TvShowFavoritFragment extends Fragment {
 
         enableSwipeToDeleteAndUndo();
 
-        return view;
     }
 
     private Observer<ArrayList<DiscoverTvShow>> getListTvShowFav = new Observer<ArrayList<DiscoverTvShow>>() {
         @Override
         public void onChanged(@Nullable ArrayList<DiscoverTvShow> discoverTvShows) {
             tvShowListAdapter.setdIscoverTvShowArrayList(discoverTvShows);
+            recyclerView.setAdapter(tvShowListAdapter);
             setProgressBar(false);
         }
     };

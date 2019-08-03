@@ -5,6 +5,7 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -33,21 +34,25 @@ import java.util.ArrayList;
 public class MovieCatalogueFragment extends Fragment {
     private ProgressBar progressBar;
     private MovieListAdapter movieListAdapter;
+    private RecyclerView recyclerView;
 
     public MovieCatalogueFragment() {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_movie_catalogue, container, false);
-        progressBar = view.findViewById(R.id.pb_movie_catalogue);
+        return inflater.inflate(R.layout.fragment_movie_catalogue, container, false);
+    }
 
-        RecyclerView recyclerView;
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
+        super.onViewCreated(view, savedInstanceState);
+
         recyclerView = view.findViewById(R.id.rv_movie_catalogue);
+        progressBar = view.findViewById(R.id.pb_movie_catalogue);
 
         // set up recycler view
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -55,13 +60,12 @@ public class MovieCatalogueFragment extends Fragment {
 
         // initialize adapter
         movieListAdapter = new MovieListAdapter(getContext());
-        recyclerView.setAdapter(movieListAdapter);
         progressBar.setVisibility(View.VISIBLE);
 
         // menginialisasi ViewModel
         MovieDiscoverViewModel movieDiscoverViewModel = ViewModelProviders.of(this).get(MovieDiscoverViewModel.class);
         movieDiscoverViewModel.getData().observe(this, getListMovie);
-        return view;
+
     }
 
     private Observer<JsonApiResponse> getListMovie = new Observer<JsonApiResponse>() {
@@ -82,8 +86,10 @@ public class MovieCatalogueFragment extends Fragment {
                         DiscoverMovie discoverMovie = new DiscoverMovie(results.getJSONObject(i));
                         discoverMovies.add(discoverMovie);
                     }
+                    recyclerView.setAdapter(movieListAdapter);
                     movieListAdapter.setDiscoverMovies(discoverMovies);
                     showPogressBar(false);
+
 
                 } catch (Exception e) {
                     e.printStackTrace();

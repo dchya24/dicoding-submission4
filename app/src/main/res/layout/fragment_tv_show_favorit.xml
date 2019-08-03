@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.TvShowFavoritFragment"
-    android:id="@+id/frame_tv_favorite">
+    android:id="@+id/frame_tv_favorite"
+    android:paddingStart="@dimen/dp_m"
+    android:paddingEnd="@dimen/dp_m">
 
     <!-- TODO: Update blank fragment layout -->
     <android.support.v7.widget.RecyclerView

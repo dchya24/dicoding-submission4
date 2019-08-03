@@ -3,6 +3,8 @@
     package="com.example.dchya24.submission4">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <permission android:name="com.example.dchya24.submission4.READ_DATABASE" android:protectionLevel="normal"/>
+    <permission android:name="com.example.dchya24.submission4.WRITE_DATABASE" android:protectionLevel="normal"/>
 
     <application
         android:allowBackup="true"
@@ -32,8 +34,27 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/movie_favorite_widget_info" />
         </receiver>
-        <service android:name=".widget.StackWidgetService"
-            android:permission="android.permission.BIND_REMOTEVIEWS"/>
+
+        <service
+            android:name=".widget.StackWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <activity
+            android:name=".settings.SettingActivity"
+            android:label="@string/empty_text" />
+        <activity
+            android:name=".views.FavoriteActivity"
+            android:label="@string/favorite" />
+        <activity
+            android:name=".views.SearchActivity"
+            android:label="@string/searching"/>
+        
+        <provider
+            android:authorities="com.example.dchya24.submission4"
+            android:name=".providers.MovieContentProvider"
+            android:exported="true"
+            android:readPermission="com.example.dchya24.submission4.READ_DATABASE"
+            android:writePermission="com.example.dchya24.submission4.WRITE_DATABASE"/>
     </application>
 
 </manifest>

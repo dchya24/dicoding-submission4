@@ -20,20 +20,16 @@ public class FavoriteAsyncTask extends AsyncTask<FavoriteSupport, FavoriteSuppor
     @Override
     protected FavoriteSupport doInBackground(FavoriteSupport... favoriteSupports) {
         FavoriteSupport fSupport = favoriteSupports[0];
-        long status;
-        int delete_status;
 
         switch (fSupport.getStatusRequest()){
             case 201:
                 fSupport.setMovieFavoriteList(db.movieFavoritDAO().getMovieFavorite());
                 return fSupport;
             case 202:
-                status = db.movieFavoritDAO().insertMovieFav(fSupport.getMovieFavorite());
-                fSupport.setStatusInsert(status);
+                db.movieFavoritDAO().insertMovieFav(fSupport.getMovieFavorite());
                 return fSupport;
             case 203:
-                delete_status = db.movieFavoritDAO().deleteMovieFavorite(fSupport.getMovieFavorite());
-                fSupport.setDeleteStatus(delete_status);
+                db.movieFavoritDAO().deleteMovieFavorite(fSupport.getMovieFavorite());
                 return fSupport;
             case 204:
                 fSupport.setMovieFavorite(db.movieFavoritDAO().getMovieFavoriteId(fSupport.getItem_id()));
@@ -42,12 +38,10 @@ public class FavoriteAsyncTask extends AsyncTask<FavoriteSupport, FavoriteSuppor
                 fSupport.setTvShowFavoriteList(db.tvShowFavoriteDAO().getTvShowFavorite());
                 return fSupport;
             case 212:
-                status = db.tvShowFavoriteDAO().insertTvShowFav(fSupport.getTvShowFavorite());
-                fSupport.setStatusInsert(status);
+                db.tvShowFavoriteDAO().insertTvShowFav(fSupport.getTvShowFavorite());
                 return fSupport;
             case 213:
-                delete_status = db.tvShowFavoriteDAO().deleteTvShowFavorite(fSupport.getTvShowFavorite());
-                fSupport.setDeleteStatus(delete_status);
+                db.tvShowFavoriteDAO().deleteTvShowFavorite(fSupport.getTvShowFavorite());
                 return fSupport;
             case 214:
                 fSupport.setTvShowFavorite(db.tvShowFavoriteDAO().getTvShowFavoriteById(fSupport.getItem_id()));

@@ -25,4 +25,11 @@ public interface MovieDbApiInterface {
     @GET("tv/{id}")
     Call<TvShow> getTvShowDetail(@Path("id") int id, @QueryMap Map<String, String> options);
 
+
+    @GET("search/movie")
+    Call<ResponseBody> searchDiscoverMovieJson(@QueryMap Map<String, String> options);
+
+
+    @GET("search/tv")
+    Call<ResponseBody> searchDiscoverTvJson(@QueryMap Map<String, String> options);
 }

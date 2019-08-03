@@ -27,10 +27,27 @@ public class MovieDiscoverApiRepository {
         map.put("api_key", BuildConfig.API_KEY);
         map.put("language", "en-US");
 
-        final MutableLiveData<JsonApiResponse> arrayListMutableLiveData = new MutableLiveData<>();
-
         Call<ResponseBody> responseBodyCall = movieDbApiInterface.getDiscoverMovieJson(map);
 
+        return responseBody(responseBodyCall);
+
+    }
+
+
+    public MutableLiveData<JsonApiResponse> searchMovieDiscover(String query){
+        Map<String, String> map = new HashMap<>();
+        map.put("api_key", BuildConfig.API_KEY);
+        map.put("language", "en-US");
+        map.put("query", query);
+
+        Call<ResponseBody> responseBodyCall = movieDbApiInterface.searchDiscoverMovieJson(map);
+
+        return responseBody(responseBodyCall);
+
+    }
+
+    private MutableLiveData<JsonApiResponse> responseBody(Call<ResponseBody> responseBodyCall){
+        final MutableLiveData<JsonApiResponse> arrayListMutableLiveData = new MutableLiveData<>();
         responseBodyCall.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <CheckBoxPreference
+        android:key="@string/key_movie_release"
+        android:title="@string/string_movie_release"
+        android:defaultValue="true" />
+
+    <CheckBoxPreference
+        android:key="@string/key_reminder"
+        android:title="@string/string_reminder"
+        android:defaultValue="true"/>
+
+</PreferenceScreen>

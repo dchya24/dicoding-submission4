@@ -27,5 +27,10 @@
     <string name="undo">Urungkan</string>
 
     <string name="reminder_text">Setting Pengingat</string>
+    <string name="string_movie_release">Mengingatkan rilis hari ini</string>
+    <string name="string_reminder">Selalu mengingatkan</string>
+
+    <string name="favorite">Favorit</string>
+    <string name="searching">Pencarian</string>
 
 </resources>

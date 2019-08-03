@@ -67,20 +67,12 @@ public class FavoriteSupport {
         this.movieFavorite = movieFavorite;
     }
 
-    public void setStatusInsert(Long status) {
-        Long insert_status = status;
-    }
-
     public void setItem_id(int item_id) {
         this.item_id = item_id;
     }
 
     public int getItem_id() {
         return item_id;
-    }
-
-    public void setDeleteStatus(int delete_status) {
-        int delete_status1 = delete_status;
     }
 
     public TvShowFavorite getTvShowFavorite() {

@@ -5,6 +5,7 @@ import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
+import android.database.Cursor;
 
 import com.example.dchya24.submission4.model.MovieFavorite;
 
@@ -25,5 +26,8 @@ public interface MovieFavoritDAO {
 
     @Delete
     int deleteMovieFavorite(MovieFavorite movieFavorite);
+
+    @Query("SELECT * FROM tbmoviefavorite ORDER BY 'date' DESC")
+    Cursor selectAllMovieFavorite();
 
 }

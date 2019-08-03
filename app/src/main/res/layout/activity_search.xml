@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_tv_show_catalogue"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.TvShowCatalogueFragment"
+    android:background="@color/colorSecondaryLight"
+    tools:context=".views.SearchActivity"
     android:paddingStart="@dimen/dp_m"
-    android:paddingEnd="@dimen/dp_m">
+    android:paddingEnd="@dimen/dp_m"
+    android:orientation="horizontal">
 
-    <!-- TODO: Update blank fragment layout -->
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_tv_catalogue"
+        android:id="@+id/rv_search"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
     <ProgressBar
-        android:id="@+id/pb_tv_catalogue"
-        android:layout_width="match_parent"
+        android:id="@+id/pb_search"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="@dimen/dp_m"
         android:layout_gravity="center"/>
 
-</FrameLayout>
+</LinearLayout>

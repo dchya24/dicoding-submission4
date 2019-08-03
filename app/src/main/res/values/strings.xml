@@ -40,5 +40,12 @@
 
     <string name="movie_widget_text" translatable="false">Movie Widget</string>
     <string name="reminder_text">Reminder Settings</string>
+    <string name="key_movie_release" translatable="false">movie_release</string>
+    <string name="string_movie_release">Release Today Reminder</string>
+    <string name="key_reminder" translatable="false">reminder</string>
+    <string name="string_reminder">Always Reminder</string>
+
+    <string name="favorite">Favorite</string>
+    <string name="searching">Searching</string>
 
 </resources>
