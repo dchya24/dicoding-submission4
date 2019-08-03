@@ -16,11 +16,23 @@ public class JsonApiResponse {
         this.throwable = throwable;
     }
 
+
+    public JsonApiResponse() {
+    }
+
     public ResponseBody getResponseBody(){
         return responseBody;
     }
 
     public Throwable getThrowable(){
         return throwable;
+    }
+
+    public void setResponseBody(ResponseBody responseBody) {
+        this.responseBody = responseBody;
+    }
+
+    public void setThrowable(Throwable throwable) {
+        this.throwable = throwable;
     }
 }
