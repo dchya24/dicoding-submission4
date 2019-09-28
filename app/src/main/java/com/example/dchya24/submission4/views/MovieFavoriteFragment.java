@@ -92,6 +92,7 @@ public class MovieFavoriteFragment extends Fragment {
                         rvFavMovie.scrollToPosition(position);
                     }
                 });
+                snackbar.setActionTextColor(getResources().getColor(R.color.colorPrimary));
 
                 snackbar.show();
             }

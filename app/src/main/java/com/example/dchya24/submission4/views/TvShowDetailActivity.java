@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,9 +31,10 @@ import com.example.dchya24.submission4.viewmodels.TvShowDetailViewModel;
 public class TvShowDetailActivity extends AppCompatActivity implements View.OnClickListener{
     public static final String EXTRA_DATA = "extra_data";
     private ImageView imgPoster, imgBackdrop;
-    private TextView tvTitle, tvRelease, tvRate, tvOverview, textUserScore;
+    private TextView tvTitle, tvRelease, tvOverview, textUserScore;
     private TextView textTags, textOverview, textCreator, textSeasonList, textRelease;
     private ProgressBar progressBar;
+    private RatingBar ratingBar;
     private GenreAdapter genreAdapter;
     private CreatorAdapter creatorAdapter;
     private SeasonAdapter seasonAdapter;
@@ -53,7 +55,7 @@ public class TvShowDetailActivity extends AppCompatActivity implements View.OnCl
         imgBackdrop = findViewById(R.id.img_back);
         imgPoster = findViewById(R.id.img_poster);
         progressBar = findViewById(R.id.progressBar);
-        tvRate = findViewById(R.id.tv_user_score);
+        ratingBar = findViewById(R.id.rb_user_score);
         tvOverview = findViewById(R.id.tv_overview);
         textTags = findViewById(R.id.text_view_tag);
         textUserScore = findViewById(R.id.text_user_score);
@@ -126,6 +128,7 @@ public class TvShowDetailActivity extends AppCompatActivity implements View.OnCl
             textTags.setVisibility(View.VISIBLE);
             textRelease.setVisibility(View.VISIBLE);
             imgBackdrop.setVisibility(View.VISIBLE);
+            ratingBar.setVisibility(View.VISIBLE);
         }else{
 
             imgPoster.setVisibility(View.GONE);
@@ -136,7 +139,7 @@ public class TvShowDetailActivity extends AppCompatActivity implements View.OnCl
             textTags.setVisibility(View.GONE);
             textRelease.setVisibility(View.GONE);
             imgBackdrop.setVisibility(View.GONE);
-
+            ratingBar.setVisibility(View.GONE);
         }
     }
 
@@ -153,7 +156,7 @@ public class TvShowDetailActivity extends AppCompatActivity implements View.OnCl
         tvRelease.setText(tvShow.getFirstAirDate());
         tvTitle.setText(tvShow.getName());
         tvOverview.setText(tvShow.getOverview());
-        tvRate.setText(tvShow.getVoteAverage());
+        ratingBar.setRating(Float.parseFloat(tvShow.getVoteAverage())/2);
 
         Glide.with(getApplicationContext()).load(tvShow.getPosterURL()).into(imgPoster);
         Glide.with(getApplicationContext()).load(tvShow.getBackdropPath()).into(imgBackdrop);
@@ -199,6 +202,7 @@ public class TvShowDetailActivity extends AppCompatActivity implements View.OnCl
             tvShowDetailViewModel.deleteTvShowFavorite(tvShowFavorite);
             setFavButtonIcon(false);
             Toast.makeText(this, getString(R.string.has_remove_movie_favorite), Toast.LENGTH_SHORT).show();
+            status_favorite = false;
         }else{
             tvShowDetailViewModel.insertTvShowFavorite(tvShowFavorite);
             setFavButtonIcon(true);

@@ -24,4 +24,15 @@ public class TvShowDiscoverViewModel extends ViewModel {
         return apiResponseMediatorLiveData;
     }
 
+    public LiveData<JsonApiResponse> searchData(String query){
+        apiResponseMediatorLiveData.addSource(tvShowDiscoverApiRepository.searchTvShow(query), new Observer<JsonApiResponse>() {
+            @Override
+            public void onChanged(@Nullable JsonApiResponse jsonApiResponse) {
+                apiResponseMediatorLiveData.setValue(jsonApiResponse);
+            }
+        });
+
+        return apiResponseMediatorLiveData;
+    }
+
 }

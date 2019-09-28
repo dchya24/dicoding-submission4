@@ -18,9 +18,9 @@
     <string name="text_runtime">Menit</string>
     <string name="seasons_pic">Foto Musim</string>
     <string name="season_list">Daftar Musim</string>
+
     <string name="has_remove_movie_favorite">Anda Sudah menghapuskan film ini dari daftar favorit</string>
     <string name="has_add_movie_favorite">Anda Sudah menambahkan film ini ke daftar favorit</string>
-
 
     <string name="has_remove_tvshow_favorite">Anda Sudah menghapuskan Acara TV ini dari daftar favorit</string>
     <string name="has_add_tvshow_favorite">Anda Sudah menambahkan Acara TV ini ke daftar favorit</string>
@@ -32,5 +32,7 @@
 
     <string name="favorite">Favorit</string>
     <string name="searching">Pencarian</string>
+    <string name="app_message">Ayo, Balik lagi, jangan sampai ketinggalan Informasi Baru!!</string>
+    <string name="search">Search</string>
 
 </resources>

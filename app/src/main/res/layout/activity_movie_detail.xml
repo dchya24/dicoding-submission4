@@ -44,7 +44,7 @@
                 android:layout_height="match_parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="@dimen/dp_l"
-                app:layout_constraintStart_toStartOf="parent"   >
+                app:layout_constraintStart_toStartOf="parent"  >
 
                 <ProgressBar
                     android:id="@+id/progressBar"

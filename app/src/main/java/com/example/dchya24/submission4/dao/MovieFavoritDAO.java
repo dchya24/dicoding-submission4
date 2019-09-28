@@ -25,9 +25,16 @@ public interface MovieFavoritDAO {
     MovieFavorite getMovieFavoriteId(int id);
 
     @Delete
-    int deleteMovieFavorite(MovieFavorite movieFavorite);
+    void deleteMovieFavorite(MovieFavorite movieFavorite);
 
     @Query("SELECT * FROM tbmoviefavorite ORDER BY 'date' DESC")
     Cursor selectAllMovieFavorite();
+
+    @Query("DELETE FROM tbmoviefavorite WHERE id = :id")
+    int deleteMovieByProvider(String id);
+
+
+    @Query("SELECT * FROM tbmoviefavorite WHERE id = :id LIMIT 1")
+    Cursor getMovieByIdProvider(String id);
 
 }

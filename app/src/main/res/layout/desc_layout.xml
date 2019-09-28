@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:paddingStart="@dimen/dp_xl"
     android:paddingEnd="@dimen/dp_xl"
@@ -39,16 +40,16 @@
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/tv_release"/>
 
-    <TextView
-        android:id="@+id/tv_user_score"
+
+    <RatingBar
+        android:id="@+id/rb_user_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/dp_l"
-        android:paddingStart="@dimen/dp_l"
-        android:paddingEnd="@dimen/dp_m"
-        android:textSize="@dimen/font_l"
-        android:textStyle="italic"
-        app:layout_constraintTop_toBottomOf="@+id/text_user_score" />
+        android:layout_marginStart="@dimen/dp_m"
+        android:rating="3"
+        style="@style/Base.Widget.AppCompat.RatingBar.Indicator"
+        android:numStars="5"
+        app:layout_constraintTop_toBottomOf="@id/text_user_score"/>
 
     <TextView
         android:id="@+id/text_overview"
@@ -58,7 +59,8 @@
         android:text="@string/overview"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/tv_user_score" />
+
+        app:layout_constraintTop_toBottomOf="@id/rb_user_score" />
 
     <TextView
         android:id="@+id/tv_overview"
@@ -71,5 +73,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_overview" />
-
 </android.support.constraint.ConstraintLayout>

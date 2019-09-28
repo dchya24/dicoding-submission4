@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,8 +28,9 @@ import com.example.dchya24.submission4.viewmodels.MovieDetailViewModel;
 public class MovieDetailActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String EXTRA_DATA = "extra_data";
     private ImageView imgPoster, imgBakdrop;
-    private TextView tvTitle, tvRelease, tvRuntime, tvRate, tvOverview, textUserScore, textTags, textOverview, textRelease;
+    private TextView tvTitle, tvRelease, tvRuntime, tvOverview, textUserScore, textTags, textOverview, textRelease;
     private ProgressBar progressBar;
+    private RatingBar ratingBar;
     private Movie movie;
     private RecyclerView rvGenre;
     private GenreAdapter genreAdapter;
@@ -49,7 +51,7 @@ public class MovieDetailActivity extends AppCompatActivity implements View.OnCli
         tvRuntime = findViewById(R.id.tv_runtime);
         rvGenre = findViewById(R.id.rv_genre);
         tvOverview = findViewById(R.id.tv_overview);
-        tvRate = findViewById(R.id.tv_user_score);
+        ratingBar = findViewById(R.id.rb_user_score);
         textUserScore = findViewById(R.id.text_user_score);
         textTags = findViewById(R.id.text_view_tag);
         textOverview = findViewById(R.id.text_overview);
@@ -97,6 +99,7 @@ public class MovieDetailActivity extends AppCompatActivity implements View.OnCli
             textTags.setVisibility(View.VISIBLE);
             textRelease.setVisibility(View.VISIBLE);
             imgBakdrop.setVisibility(View.VISIBLE);
+            ratingBar.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.GONE);
         }else{
             textOverview.setVisibility(View.GONE);
@@ -105,6 +108,7 @@ public class MovieDetailActivity extends AppCompatActivity implements View.OnCli
             textTags.setVisibility(View.GONE);
             imgBakdrop.setVisibility(View.GONE);
             textRelease.setVisibility(View.GONE);
+            ratingBar.setVisibility(View.GONE);
             progressBar.setVisibility(View.VISIBLE);
         }
     }
@@ -112,12 +116,13 @@ public class MovieDetailActivity extends AppCompatActivity implements View.OnCli
     private void setView(){
         if(getSupportActionBar() != null) getSupportActionBar().setTitle(movie.getTitle());
 
+        float rating = Float.parseFloat(movie.getVoteAverage());
 
         tvRelease.setText(movie.getReleaseDate());
         tvRuntime.setText(String.format("%s %s", movie.getRuntime(), getResources().getString(R.string.text_runtime)));
         tvTitle.setText(movie.getTitle());
         tvOverview.setText(movie.getOverview());
-        tvRate.setText(movie.getVoteAverage());
+        ratingBar.setRating(rating/2);
 
         Glide.with(this).load(movie.getBackdropPath()).into(imgBakdrop);
         Glide.with(this).load(movie.getPosterURL()).into(imgPoster);
@@ -164,6 +169,7 @@ public class MovieDetailActivity extends AppCompatActivity implements View.OnCli
             movieDetailViewModel.deleteFavoriteMovie(movieFavorite);
             setFavButtonIcon(false);
             Toast.makeText(this, getString(R.string.has_remove_movie_favorite), Toast.LENGTH_SHORT).show();
+            status_favorite = false;
         }else{
             movieDetailViewModel.insertFavoriteMovie(movieFavorite);
             setFavButtonIcon(true);

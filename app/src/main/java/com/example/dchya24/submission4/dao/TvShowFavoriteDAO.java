@@ -24,8 +24,16 @@ public interface TvShowFavoriteDAO {
     TvShowFavorite getTvShowFavoriteById(int id);
 
     @Delete
-    int deleteTvShowFavorite(TvShowFavorite tvShowFavorite);
+    void deleteTvShowFavorite(TvShowFavorite tvShowFavorite);
 
     @Query("SELECT * FROM tbtvshowfavorite ORDER BY 'date' DESC")
     Cursor selectAllTvShowFavorite();
+
+    @Query("DELETE FROM tbtvshowfavorite WHERE id = :id")
+    int deleteTvShowFavoriteByIdProvider(String id);
+
+    @Query("SELECT id FROM tbtvshowfavorite WHERE id = :id LIMIT 1")
+    Cursor getTvShowFavoriteByIdProvider(String id);
+
+
 }

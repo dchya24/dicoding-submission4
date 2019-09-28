@@ -27,9 +27,9 @@
     <string name="text_runtime">Minutes</string>
     <string name="seasons_pic">Seasons Pic</string>
     <string name="season_list">Season List</string>
+
     <string name="has_remove_movie_favorite">You\'ve already removed this film from favorite list</string>
     <string name="has_add_movie_favorite">You\'ve added this film to the favorite list</string>
-
 
     <string name="has_remove_tvshow_favorite">You\'ve already removed this Tv Show from favorite list</string>
     <string name="has_add_tvshow_favorite">You\'ve added this Tv Show to the favorite list</string>
@@ -47,5 +47,8 @@
 
     <string name="favorite">Favorite</string>
     <string name="searching">Searching</string>
+
+    <string name="app_message">Come on, back again, don\'t miss the new information !!</string>
+    <string name="search">Search</string>
 
 </resources>

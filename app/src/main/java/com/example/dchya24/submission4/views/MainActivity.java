@@ -15,6 +15,8 @@ import android.widget.SearchView;
 
 import com.example.dchya24.submission4.R;
 import com.example.dchya24.submission4.adapter.DiscoverPageAdapter;
+import com.example.dchya24.submission4.reminder.ReminderMovieRelease;
+import com.example.dchya24.submission4.reminder.ReminderUser;
 import com.example.dchya24.submission4.settings.SettingActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText("Movie"));
         tabLayout.addTab(tabLayout.newTab().setText("Tv Show"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.fontLight));
 
         viewPager = findViewById(R.id.viewpager);
         DiscoverPageAdapter discoverPageAdapter = new DiscoverPageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());

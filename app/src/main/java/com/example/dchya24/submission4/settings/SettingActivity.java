@@ -1,7 +1,10 @@
 package com.example.dchya24.submission4.settings;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.dchya24.submission4.R;
@@ -18,7 +21,18 @@ public class SettingActivity extends AppCompatActivity {
                 .beginTransaction()
                 .add(R.id.setting_holder, new MyPreferenceFragment()).commit();
 
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setTitle(getResources().getString(R.string.reminder_text));
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean status = preferences.getBoolean("movie_release", false);
+        boolean reminder = preferences.getBoolean("reminder", false);
+        Log.d("Reminder", "Status: " + reminder);
+        Log.d("Movie Release", "Release: " + status);
+
     }
 
     @Override

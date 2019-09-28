@@ -104,6 +104,7 @@ public class TvShowFavoritFragment extends Fragment {
                         recyclerView.scrollToPosition(position);
                     }
                 });
+                snackbar.setActionTextColor(getResources().getColor(R.color.colorPrimary));
 
                 snackbar.show();
             }

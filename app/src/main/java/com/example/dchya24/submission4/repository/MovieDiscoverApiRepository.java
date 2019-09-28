@@ -30,9 +30,7 @@ public class MovieDiscoverApiRepository {
         Call<ResponseBody> responseBodyCall = movieDbApiInterface.getDiscoverMovieJson(map);
 
         return responseBody(responseBodyCall);
-
     }
-
 
     public MutableLiveData<JsonApiResponse> searchMovieDiscover(String query){
         Map<String, String> map = new HashMap<>();

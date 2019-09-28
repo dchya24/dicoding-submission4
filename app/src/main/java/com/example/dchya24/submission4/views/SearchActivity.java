@@ -54,7 +54,8 @@ public class SearchActivity extends AppCompatActivity {
         searchSupport = new SearchSupport();
 
         showPogressBar(true);
-        /**
+
+        /*
          * 1 = Movie
          * 2 = Tv Show
          */

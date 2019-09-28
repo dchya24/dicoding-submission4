@@ -5,11 +5,11 @@
     <CheckBoxPreference
         android:key="@string/key_movie_release"
         android:title="@string/string_movie_release"
-        android:defaultValue="true" />
+        android:defaultValue="false" />
 
     <CheckBoxPreference
         android:key="@string/key_reminder"
         android:title="@string/string_reminder"
-        android:defaultValue="true"/>
+        android:defaultValue="false"/>
 
 </PreferenceScreen>
